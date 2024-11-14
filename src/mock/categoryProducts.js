@@ -42,6 +42,7 @@ export const categoryProducts = {
     {
       id: 1,
       name: "Intel Core i5-12600KF",
+      img: "../public/i5-12600KF.webp",
       specs: {
         price: 5098,
         avgBench: 109,
@@ -51,6 +52,7 @@ export const categoryProducts = {
     {
       id: 2,
       name: "Intel Core i7-14700K",
+      img: "../public/i7-14700K.jpg",
       specs: {
         price: 11049,
         avgBench: 130,
@@ -60,6 +62,7 @@ export const categoryProducts = {
     {
       id: 3,
       name: "AMD Ryzen 5 3600",
+      img: "../public/ryzen5.jpg",
       specs: {
         price: 2991,
         avgBench: 83,
