@@ -1,0 +1,135 @@
+.payment-stepper-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: white;
+}
+
+.ant-layout-footer {
+    background-color: white;
+}
+
+.payment-successfully {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    margin-left: 10%;
+}
+
+.payment-stepper-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 900px;
+    flex: 1;
+    height: 100%;
+    margin-top: -9%;
+}
+
+.steps-container {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.payment-stepper-form {
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    flex: 1;
+}
+
+.payment-stepper-sidebar {
+    width: 300px;
+    background: #fff;
+    padding: 0px 5px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    margin-left: 5px;
+    flex: 1;
+    max-width: 500px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.payment-stepper-unified {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.product-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    padding: 0px;
+    max-height: 600px;
+    width: 580px;
+}
+
+.product-list-container {
+    width: 100%;
+    min-width: 250px;
+    max-height: 450px;
+    overflow-y: auto;
+    background: #fff;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.address-form {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+}
+
+.address-form .ant-form-item {
+    margin-bottom: 20px;
+}
+
+.address-form .ant-input,
+.address-form .ant-input-textarea {
+    width: 100%;
+}
+
+.ant-steps .ant-steps-item-process .ant-steps-item-icon {
+    background-color: wheat;
+    color: black;
+    border: none;
+    padding: 1px;
+}
+
+.continue-button {
+    background-color: wheat;
+    color: rgb(43, 43, 43);
+}
+
+.continue-button:hover {
+    background-color: rgb(43, 43, 43) !important;
+    color: wheat !important;
+}
+
+.home-button {
+    background-color: wheat;
+    color: rgb(43, 43, 43);
+}
+
+.home-button:hover {
+    background-color: rgb(43, 43, 43) !important;
+    color: wheat !important;
+}

@@ -1,0 +1,28 @@
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fff;
+}
+
+.card-container {
+    width: 100%;
+    max-width: 240px;
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+Button {
+    margin: 5px 0px;
+}
+
+.button-container {
+    display: flex;
+}

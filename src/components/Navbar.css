@@ -1,0 +1,124 @@
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    padding: 0 20px;
+    background-color: black;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.header-logo{
+    display: flex;
+    align-items: center;
+}
+
+.header-text{
+    color: #00FDCF;
+    font-weight: 200;
+    margin-left: 10px;
+}
+
+.ant-layout-header {
+    background-color: black;
+}
+
+.navbar-container>.ant-space {
+    display: flex;
+}
+
+.navbar-container a {
+    color: #00FDCF;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s;
+}
+
+.icon {
+    color: #00FDCF;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.category-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.category-dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #000000;
+    width: 160%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+}
+
+.category-dropdown:hover .category-dropdown-content {
+    display: block;
+    margin-top: -1%;
+}
+
+.category-dropdown-content a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-dropdown-content a:hover {
+    background-color: black;
+    border: 1px solid wheat;
+    margin: 0;
+}
+
+.custom-badge .ant-badge-count {
+    background-color: wheat;
+    color: black !important;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+@media (max-width: 1200px) {
+    .navbar-container a {
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 900px) {
+    .navbar-container a {
+        margin: 0 5px;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar-container {
+        gap: 10%;
+    }
+
+    .space {
+        gap: 3%;
+    }
+
+    .navbar-container a {
+        margin: 0 2px;
+        margin-left: -20%;
+    }
+
+    .category {
+        margin-left: 10px !important;
+    }
+
+    .favorites {
+        margin-left: -10px !important;
+    }
+}

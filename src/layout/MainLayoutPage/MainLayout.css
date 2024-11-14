@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+*{
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.layout{
+    background: radial-gradient(ellipse 120% 210% at 95% 0, rgb(18 59 91) 10%, #000 70%);
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}

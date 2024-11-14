@@ -1,0 +1,212 @@
+html,
+body,
+#root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f7f7;
+}
+
+.profile-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.saved-data-container {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 26px;
+    overflow-y: auto;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.profile-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+}
+
+.form-item {
+    margin-left: -20%;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.profile-form .ant-form-item {
+    margin-bottom: 16px;
+}
+
+.profile-form .ant-form-item label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.profile-form input {
+    border-radius: 4px;
+    border: 1px solid #d9d9d9;
+    transition: border-color 0.3s;
+    width: 100%;
+}
+
+.profile-form input:focus {
+    border-color: #40a9ff;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.profile-form button {
+    padding: 0.5em 1em;
+    font-size: 1em;
+    margin: 0.5em 0;
+}
+
+.input-profile-email {
+    margin-left: 3.5%;
+    width: 140% !important;
+}
+
+.input-profile-name {
+    margin-left: 3%;
+    width: 140% !important;
+}
+
+.input-profile-age {
+    width: 43.5% !important;
+    margin-left: 6.5%;
+}
+
+.input-profile-gender {
+    width: 43.5% !important;
+    margin-left: 1%;
+}
+
+.input-profile-address {
+    width: 250px !important;
+    height: 130px;
+    margin-right: -70px;
+}
+
+:where(.css-dev-only-do-not-override-98ntnt).ant-layout-footer {
+    background-color: #fff;
+}
+
+.ant-layout.ant-layout-has-sider>.ant-layout {
+    background-color: white;
+}
+
+.ant-layout-header {
+    background-color: white !important;
+}
+
+.profile-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.update-button {
+    background-color: wheat;
+    color: rgb(43, 43, 43);
+}
+
+.update-button:hover {
+    background-color: rgb(43, 43, 43) !important;
+    color: wheat !important;
+}
+
+@media (max-width: 768px) {
+    .saved-data-container {
+        width: 95%;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 860px) {
+    .profile-page-container {
+        flex-direction: column;
+    }
+
+    .profile-form {
+        width: 100%;
+    }
+
+    .input-profile-email,
+    .input-profile-name,
+    .input-profile-age,
+    .input-profile-gender,
+    .input-profile-address {
+        width: 100% !important;
+        margin-left: 0;
+    }
+
+    h2 {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .profile-buttons {
+        flex-direction: column;
+    }
+
+    .profile-buttons button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .saved-data-container {
+        width: 90%;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .profile-buttons {
+        flex-direction: column;
+    }
+
+    .profile-buttons button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-form {
+        width: 100%;
+    }
+
+    .profile-buttons button {
+        width: 100%;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}

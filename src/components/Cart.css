@@ -1,0 +1,142 @@
+.card-container {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: auto;
+    height: 550px;
+    margin: 20px 0;
+    transition: transform 0.2s;
+}
+
+.card-container:hover {
+    transform: translateY(-5px);
+}
+
+.card-content {
+    padding: 16px;
+    height: calc(100% - 50px);
+    overflow: hidden;
+     font-family: "Rajdhani", sans-serif;
+ 
+}
+
+.ant-card-meta-description {
+    height: 65px;
+}
+
+.price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff5733;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    gap: 10px;
+}
+
+.favorite-button {
+    background-color: rgb(0, 89, 116);
+    color: #fff;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    border: none;
+}
+
+.favorite-button.in-favori,
+.basket-button.in-cart {
+    background-color: rgb(77, 77, 77);
+    color: rgb(255, 182, 46);
+}
+
+.basket-button {
+    background-color: rgb(0, 89, 116);
+    color: #fff;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    border: none;
+}
+
+.basket-button:hover,
+.favorite-button:hover,
+.review-button:hover {
+    background-color: rgb(255, 255, 255) !important;
+    color: black !important;
+    border: 1px solid #000;
+}
+
+.review-button {
+    background-color: rgb(0, 89, 116);
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    color: #fff;
+    border: none;
+}
+
+.card-container img {
+    border-radius: 4px;
+    height: 350px;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 1250px) {
+    .card-container {
+        height: auto;
+    }
+
+    .card-container img {
+        border-radius: 4px;
+        height: 400px;
+        object-fit: cover;
+    }
+
+    .card-content {
+        padding: 10px;
+    }
+
+    .price {
+        font-size: 14px;
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .favorite-button,
+    .basket-button {
+        width: 100%;
+        font-size: 16px;
+    }
+}
+.compare-button {
+    background-color:#006795bf;
+    color: #000000;
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.compare-button:hover {
+    background-color: #004280;
+    box-shadow: 0px 4px 10px rgba(46, 93, 143, 0.3);
+    transform: translateY(-2px);
+}
+
+.compare-button .icon {
+    margin-right: 8px; /* İkon ve metin arasındaki boşluk */
+    font-size: 18px; /* İkon boyutu */
+}

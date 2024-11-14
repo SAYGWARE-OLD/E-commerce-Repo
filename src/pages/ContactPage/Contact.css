@@ -1,0 +1,62 @@
+html,
+body,
+#root {
+    height: 100%;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+    background-color: white;
+}
+
+.ant-form {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    height: 75%;
+}
+
+.ant-form-item-label>label {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.ant-input,
+.ant-input-textarea,
+.ant-select-selector {
+    border-radius: 4px;
+    border: 1px solid wh;
+    transition: border-color 0.3s;
+}
+
+.ant-input:focus,
+.ant-input:hover,
+.ant-input-textarea:focus,
+.ant-input-textarea:hover,
+.ant-select-focused .ant-select-selector {
+    border-color: wheat;
+}
+
+.ant-btn {
+    background-color: wheat;
+    color: rgb(43, 43, 43);
+    font-weight: bold;
+    width: 100%;
+    border: none;
+}
+
+.ant-btn:hover {
+    background-color: rgb(43, 43, 43) !important;
+    color: wheat !important;
+}
+
+.ant-layout-footer {
+    background-color: white;
+}

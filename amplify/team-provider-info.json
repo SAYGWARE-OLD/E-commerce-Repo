@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-eticaret-dev-4b31c-authRole",
+      "UnauthRoleArn": "arn:aws:iam::992382687974:role/amplify-eticaret-dev-4b31c-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::992382687974:role/amplify-eticaret-dev-4b31c-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-eticaret-dev-4b31c-deployment",
+      "UnauthRoleName": "amplify-eticaret-dev-4b31c-unauthRole",
+      "StackName": "amplify-eticaret-dev-4b31c",
+      "StackId": "arn:aws:cloudformation:us-east-1:992382687974:stack/amplify-eticaret-dev-4b31c/ecd9b770-3d1a-11ef-a930-126e96a77eef",
+      "AmplifyAppId": "d6v16ghsp1ilr"
+    },
+    "categories": {
+      "auth": {
+        "eticaretcc9ef984": {}
+      }
+    }
+  }
+}

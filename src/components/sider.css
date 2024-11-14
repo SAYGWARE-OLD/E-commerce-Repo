@@ -1,0 +1,40 @@
+.my-orders-container,
+.order-list-container {
+    min-height: 100%;
+}
+
+.ant-layout {
+    min-height: 100%;
+}
+
+.ant-layout-content {
+    padding: 24px;
+    background: #fff;
+}
+
+.ant-layout-sider {
+    height: 100vh;
+}
+
+.ant-layout-header {
+    background: #fff;
+    padding: 0;
+}
+
+.ant-layout .ant-layout-sider-trigger {
+    background-color: black;
+    color: wheat;
+}
+
+.ant-menu-dark.ant-menu-inline .ant-menu-sub.ant-menu-inline,
+.ant-menu-dark>.ant-menu.ant-menu-inline .ant-menu-sub.ant-menu-inline {
+    background-color: black;
+}
+
+.items-label {
+    color: wheat;
+}
+
+.ant-menu-dark.ant-menu-submenu-popup>.ant-menu {
+    background-color: black;
+}
