@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 const { Text } = Typography;
 const texts = ["CPU...", "GPU...", "RAM...", "SSD..."];
 
-// eslint-disable-next-line react/prop-types
 function CategoryCard({ name, id, img }) {
   return (
     <>

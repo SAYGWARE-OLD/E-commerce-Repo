@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { MdFavoriteBorder } from "react-icons/md";
 import { FaShoppingBasket } from "react-icons/fa";
