@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Button, Col, Modal, Row } from "antd";
 import Cart from "../../components/Cart";
-import { categoryProducts } from "../../mock/categoryProducts";
-import { categories } from "../../mock/categories";
 import RadarChart from "../../components/RadarChart";
 import "./style.css";
 import { CloseCircleOutlined } from "@ant-design/icons";
 import MainLayout from "../../layout/MainLayoutPage/MainLayout";
 import { getRouteTitle } from "../../routing/routes";
 import Navbar from "../../components/navbar";
+import { earbuds } from "../../mock/earbuds";
 
 const CategoriesCompareModal = ({
   isModalOpen,
@@ -17,28 +16,6 @@ const CategoriesCompareModal = ({
   products,
   selectedProducts,
 }) => {
-  const normalizePrice = (price, maxPrice) => (1 - price / maxPrice) * 100;
-  const normalizeBench = (bench, maxBench) => (bench / maxBench) * 100;
-  const normalizeAge = (age, maxAge) => (1 - age / maxAge) * 100;
-
-  const maxPrice = Math.max(...products.map((p) => p.specs.price));
-  const maxBench = Math.max(...products.map((p) => p.specs.avgBench));
-  const maxAge = Math.max(...products.map((p) => p.specs.ageMonths));
-
-  const normalizedProducts = selectedProducts.map((product) => {
-    const normalizedSpecs = {
-      price: normalizePrice(product.specs.price, maxPrice),
-      avgBench: normalizeBench(product.specs.avgBench, maxBench),
-      ageMonths: normalizeAge(product.specs.ageMonths, maxAge),
-    };
-
-    const overallScore =
-      Object.values(normalizedSpecs).reduce((sum, value) => sum + value, 0) /
-      Object.keys(normalizedSpecs).length;
-
-    return { ...product, normalizedSpecs, overallScore };
-  });
-
   return (
     <>
       <Modal
@@ -53,7 +30,7 @@ const CategoriesCompareModal = ({
           <Row>
             <Col span={12}>
               <RadarChart
-                products={normalizedProducts}
+                products={products}
                 features={Object.keys(selectedProducts[0].specs)}
               />
             </Col>
@@ -65,12 +42,12 @@ const CategoriesCompareModal = ({
   );
 };
 
-const CategoriesContainer = () => {
-  const { slug } = useParams();
-  const category = categories.find((category) => category.slug === slug);
-  const products = categoryProducts[slug];
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const CategoriesContainer = ({ title }) => {
+  const products = earbuds.sort(
+    (a, b) => b.features.overallRating - a.features.overallRating
+  );
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
 
   const toggleProductSelection = (product) => {
@@ -92,7 +69,7 @@ const CategoriesContainer = () => {
         selectedProducts={selectedProducts}
       />
 
-      <h1 style={{ color: "white" }}>{category.name}</h1>
+      <h1 style={{ color: "white" }}>{title}</h1>
 
       <Row
         gutter={16}
@@ -100,15 +77,16 @@ const CategoriesContainer = () => {
         style={{ marginRight: "0px" }}
       >
         {products.map((product) => (
-          <Col key={product.id} xs={24} sm={12} md={8}>
+          <Col key={product.id} xs={24} sm={12} md={6}>
             <Cart
               id={product.id}
               title={product.name}
               description={product.description}
               imageSrc={product.img}
-              price={product.specs.price}
+              price={product.price}
               toggleProductSelection={toggleProductSelection}
               product={product}
+              overallRating={product.features.overallRating}
             />
           </Col>
         ))}
@@ -146,17 +124,17 @@ const CategoriesContainer = () => {
   );
 };
 
-function Categories() {
+function Earbuds() {
   const location = useLocation();
   const title = getRouteTitle(location.pathname);
 
   return (
     <MainLayout
-      content={<CategoriesContainer />}
+      content={<CategoriesContainer title={title} />}
       header={<Navbar />}
       title={title}
     />
   );
 }
 
-export default Categories;
+export default Earbuds;

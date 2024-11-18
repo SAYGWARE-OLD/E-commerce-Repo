@@ -66,7 +66,7 @@ function Navbar() {
               <Link
                 key={category.id}
                 to={getRoutePath(ROUTES_ID.categories).replace(
-                  ":id",
+                  ":slug",
                   category.id
                 )}
               >

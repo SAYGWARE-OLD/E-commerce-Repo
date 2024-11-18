@@ -1,22 +1,22 @@
 export const categories = [
   {
-    id: 1,
-    name: "Graphics Card (GPU)",
+    name: "Earbuds",
+    slug: "earbuds",
     img: "gpu.jpg",
   },
   {
-    id: 2,
-    name: "CPU",
-    img: "cpu.jpg",
+    name: "Monitors",
+    slug: "monitor",
+    img: "gpu.jpg",
   },
   {
-    id: 3,
-    name: "Memory (RAM)",
-    img: "ram.jpg",
+    name: "Keyboards",
+    slug: "keyboard",
+    img: "gpu.jpg",
   },
   {
-    id: 4,
-    name: "SSD Harddisk",
-    img: "ssd.jpg",
+    name: "Mouses",
+    slug: "mouse",
+    img: "gpu.jpg",
   },
 ];

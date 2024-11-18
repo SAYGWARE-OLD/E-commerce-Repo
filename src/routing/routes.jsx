@@ -24,14 +24,7 @@ const MyOrders = lazy(() => import("../pages/myOrdersPage/myOrders.jsx"));
 const HomeForm = lazy(() =>
   import("../pages/HomePage/pageComponents/HomeForm/HomeForm.jsx")
 );
-const TshirtPage = lazy(() => import("../pages/Products/Tshirts/Tshirts.jsx"));
-const ShortPage = lazy(() => import("../pages/Products/Shorts/Shorts.jsx"));
-const PantPage = lazy(() => import("../pages/Products/Pants/Pants.jsx"));
-const BagPage = lazy(() => import("../pages/Products/Bags/Bags.jsx"));
-const HatPage = lazy(() => import("../pages/Products/Hats/Hats.jsx"));
-const CategoriesPage = lazy(() =>
-  import("../pages/CategoriesPage/Categories.jsx")
-);
+const Earbuds = lazy(() => import("../pages/Products/Earbuds.jsx"));
 
 export const routes = [
   {
@@ -134,40 +127,10 @@ export const routes = [
     isPrivate: true,
   },
   {
-    id: ROUTES_ID.tshirt,
-    path: "/tshirt",
-    element: <TshirtPage />,
-    title: "Tshirts",
-  },
-  {
-    id: ROUTES_ID.short,
-    path: "/short",
-    element: <ShortPage />,
-    title: "Shorts",
-  },
-  {
-    id: ROUTES_ID.pant,
-    path: "/pant",
-    element: <PantPage />,
-    title: "Pants",
-  },
-  {
-    id: ROUTES_ID.bag,
-    path: "/bag",
-    element: <BagPage />,
-    title: "Bags",
-  },
-  {
-    id: ROUTES_ID.hat,
-    path: "/hat",
-    element: <HatPage />,
-    title: "Hats",
-  },
-  {
-    id: ROUTES_ID.categories,
-    path: "/categories/:id",
-    element: <CategoriesPage />,
-    title: "Categories",
+    id: `categories/earbuds`,
+    path: `/categories/earbuds`,
+    element: <Earbuds />,
+    title: "Earbuds",
   },
 ];
 

@@ -1,31 +1,30 @@
-import { Col, Row, Card, Typography  } from "antd";
+import { Col, Row, Card, Typography } from "antd";
 import "./HomeForm.css";
 import { categories } from "../../../../mock/categories";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 const { Text } = Typography;
-const texts = ["CPU...", "GPU...", "RAM...", "SSD..."];
+const texts = categories.map((category) => category.name + "...");
 
-function CategoryCard({ name, id, img }) {
+function CategoryCard({ name, slug, img }) {
   return (
     <>
-    <Link to={`categories/${id}`}>
-      <Card
-        className="category-card"
-        style={{
-          backgroundImage: `url(${img})`,
-          color: "#fff",
-        }}
-      >
-        <Text className="category-text">{name}</Text>
-      </Card>
-    </Link>
+      <Link to={`categories/${slug}`}>
+        <Card
+          className="category-card"
+          style={{
+            backgroundImage: `url(${img})`,
+            color: "#fff",
+          }}
+        >
+          <Text className="category-text">{name}</Text>
+        </Card>
+      </Link>
     </>
   );
 }
 
 function HomeForm() {
-
   const [currentText, setCurrentText] = useState("");
   const [index, setIndex] = useState(0);
 
@@ -40,16 +39,23 @@ function HomeForm() {
   return (
     <div className="page-container">
       <div className="main-title">
-        <h1>WHICH ONE IS THE BEST? <br/> <span className="fancy">{currentText}</span></h1>
-      </div>  
+        <h1>
+          WHICH ONE IS THE BEST? <br />{" "}
+          <span className="fancy">{currentText}</span>
+        </h1>
+      </div>
       <div className="categories-wrapper">
-      <Row gutter={[24, 24]}>
-        {categories.map((category) => (
-          <Col span={12} key={category.id}>
-            <CategoryCard name={category.name} id={category.id} img={category.img}/>
-          </Col>
-        ))}
-      </Row>
+        <Row gutter={[24, 24]}>
+          {categories.map((category) => (
+            <Col span={12} key={category.slug}>
+              <CategoryCard
+                name={category.name}
+                slug={category.slug}
+                img={category.img}
+              />
+            </Col>
+          ))}
+        </Row>
       </div>
     </div>
   );
