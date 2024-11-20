@@ -103,7 +103,7 @@ const CategoriesContainer = () => {
           <Col key={product.id} xs={24} sm={12} md={8}>
             <Cart
               id={product.id}
-              title={product.name}
+              title={product.name} 
               description={product.description}
               imageSrc={product.img}
               price={product.specs.price}

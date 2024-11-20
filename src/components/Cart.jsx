@@ -1,12 +1,21 @@
 import { useState } from "react";
-import { MdFavoriteBorder } from "react-icons/md";
 import { FaShoppingBasket } from "react-icons/fa";
-import { Button, Card, notification } from "antd";
+import { Button, Card, notification, Tooltip } from "antd";
 import Meta from "antd/es/card/Meta";
 import "./Cart.css";
 import { useCart, useFavori } from "../utils/CartContext";
 import { useNavigate } from "react-router-dom";
-import { EyeOutlined, SwapOutlined } from "@ant-design/icons";
+import {
+  BuildOutlined,
+  CustomerServiceOutlined,
+  EyeOutlined,
+  FormatPainterOutlined,
+  HeartTwoTone,
+  InfoCircleOutlined,
+  PoweroffOutlined,
+  SmileOutlined,
+  SwapOutlined,
+} from "@ant-design/icons";
 
 function Cart({
   id,
@@ -19,6 +28,7 @@ function Cart({
   overallRating,
 }) {
   const navigate = useNavigate();
+  console.log("product", product);
   const { addToCart, removeFromCart, cartItems } = useCart();
   const { addToFavori, removeFromFavori, favoriItems } = useFavori();
   const [isInCart, setIsInCart] = useState(
@@ -27,6 +37,7 @@ function Cart({
   const [isFavori, setIsFavori] = useState(
     favoriItems.some((item) => item.id === id)
   );
+  const [isFlipped, setIsFlipped] = useState(false);
 
   const handleAddToCart = () => {
     const item = { id, imageSrc, title, description, price };
@@ -73,6 +84,10 @@ function Cart({
     navigate(`/detail/${id}`);
   };
 
+  const handleFlip = () => {
+    setIsFlipped(!isFlipped);
+  };
+
   return (
     <Card
       hoverable
@@ -88,59 +103,124 @@ function Cart({
           }}
         />
       }
-      className="card-container"
+      className={`card-container ${isFlipped ? "flipped" : ""}`}
     >
-      <div className="card-content">
-        <div
-          style={{
-            position: "absolute",
-            left: 10,
-            top: 10,
-            backgroundColor: "#3c59fc",
-            color: "white",
-            fontWeight: "bold",
-            borderRadius: 100,
-            width: 60,
-            height: 60,
-            fontSize: 20,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          {overallRating}
+      <div className="card-inner">
+        <div className="card-front">
+          <div
+            style={{
+              position: "absolute",
+              left: 10,
+              top: 10,
+              backgroundColor: "#3c59fc",
+              color: "white",
+              fontWeight: "bold",
+              borderRadius: 100,
+              width: 60,
+              height: 60,
+              fontSize: 20,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            {overallRating}
+          </div>
+          <Meta title={title} description={description} />
+          <p className="price">Price: {price} ₺</p>
+          <div className="button-container">
+            <Button className="favorite-button" onClick={handleAddToFavori}>
+              <HeartTwoTone
+                twoToneColor={isFavori ? "#ff0000" : "#d9d9d9"}
+                style={{
+                  fontSize: "24px",
+                  color: isFavori ? "#ff0000" : "#d9d9d9",
+                }}
+              />
+            </Button>
+            <Button
+              className={`basket-button ${isInCart ? "in-cart" : ""}`}
+              onClick={handleAddToCart}
+            >
+              <FaShoppingBasket />
+              Add to Cart
+            </Button>
+            <Button className="review-button" onClick={handleNavigateCart}>
+              <EyeOutlined />
+              Review
+            </Button>
+          </div>
+          <div>
+            <Button
+              onClick={() => toggleProductSelection(product)}
+              style={{ marginTop: "10px" }}
+              className="compare-button"
+            >
+              <SwapOutlined />
+              Compare
+            </Button>
+          </div>
+          <div>
+            <button className="flip-button" onClick={handleFlip}>
+              <InfoCircleOutlined />
+            </button>
+          </div>
         </div>
-        <Meta title={title} description={description} />
-        <p className="price">Price: {price} ₺</p>
-        <div className="button-container">
-          <Button
-            className={`favorite-button ${isFavori ? "in-favori" : ""}`}
-            onClick={handleAddToFavori}
-          >
-            <MdFavoriteBorder />
-            Favorite
-          </Button>
-          <Button
-            className={`basket-button ${isInCart ? "in-cart" : ""}`}
-            onClick={handleAddToCart}
-          >
-            <FaShoppingBasket />
-            Add to Cart
-          </Button>
-          <Button className="review-button" onClick={handleNavigateCart}>
-            <EyeOutlined />
-            Review
-          </Button>
+        <div className="card-back">
+          <h1 className="features-title">Features</h1>
+
+          <div className="features">
+            <div className="features-item">
+              <Tooltip title="Build Quality">
+                <i>
+                  <BuildOutlined />
+                </i>
+              </Tooltip>
+              <p>{product.features.buildQuality}</p>
+            </div>
+            <div className="features-item">
+              <Tooltip title="Sound Quality">
+                <i>
+                  <CustomerServiceOutlined />
+                </i>
+              </Tooltip>
+              <p>{product.features.soundQuality}</p>
+            </div>
+            <div className="features-item">
+              <Tooltip title="Design">
+                <i>
+                  <FormatPainterOutlined />
+                </i>
+              </Tooltip>
+              <p>{product.features.design}</p>
+            </div>
+            <div className="features-item">
+              <Tooltip title="Comfort">
+                <i>
+                  <SmileOutlined />
+                </i>
+              </Tooltip>
+              <p>{product.features.comfort}</p>
+            </div>
+            <div className="features-item">
+              <Tooltip title="Battery">
+                <i>
+                  <PoweroffOutlined />
+                </i>
+              </Tooltip>
+              <p>{product.features.batteryLife}</p>
+            </div>
+          </div>
         </div>
         <div>
-          <Button
-            onClick={() => toggleProductSelection(product)}
-            style={{ marginTop: "10px" }}
-            className="compare-button"
-          >
-            <SwapOutlined />
-            Compare
-          </Button>
+          <button className="flip-button" onClick={handleFlip}>
+            <InfoCircleOutlined />
+          </button>
+        </div>
+        <div>
+          <button className="flip-button" onClick={handleFlip}>
+            <InfoCircleOutlined />
+          </button>
         </div>
       </div>
     </Card>
