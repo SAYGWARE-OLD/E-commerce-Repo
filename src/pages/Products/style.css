@@ -21,6 +21,7 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     margin-left: 20px;
     margin-top: 20px;
+    border-radius: 20px;
   }
   
   .sidebar h3 {
@@ -87,5 +88,13 @@
     margin-top: 16px;
     font-size: 3rem;
     color: #0f0f0f !important;
+  }
+
+  .price-range{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;  
+    gap: 16px;
   }
   

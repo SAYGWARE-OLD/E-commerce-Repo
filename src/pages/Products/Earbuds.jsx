@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Button, Col, Modal, Row, Slider } from "antd";
+import { Button, Col, Modal, Row, Slider, Input } from "antd";
 import Cart from "../../components/Cart";
 import RadarChart from "../../components/RadarChart";
 import "./style.css";
@@ -50,18 +50,34 @@ const CategoriesContainer = ({ title }) => {
     comfort: [0, 10],
     batteryLife: [0, 10],
   });
+  const [priceRange, setPriceRange] = useState({ minPrice: "", maxPrice: "" });
 
   const handleFilterChange = (feature, values) => {
     setFilterValues((prev) => ({ ...prev, [feature]: values }));
   };
 
+  const handlePriceInputChange = (e) => {
+    const { name, value } = e.target;
+    setPriceRange((prev) => ({ ...prev, [name]: value }));
+  };
+
   const filteredProducts = earbuds
-    .filter((product) =>
-      Object.entries(filterValues).every(
+    .filter((product) => {
+      const minPrice = priceRange.minPrice ? parseFloat(priceRange.minPrice) : 0;
+      const maxPrice = priceRange.maxPrice
+        ? parseFloat(priceRange.maxPrice)
+        : Infinity;
+
+      const isPriceInRange =
+        product.price >= minPrice && product.price <= maxPrice;
+
+      const areFeaturesInRange = Object.entries(filterValues).every(
         ([key, [min, max]]) =>
           product.features[key] >= min && product.features[key] <= max
-      )
-    )
+      );
+
+      return isPriceInRange && areFeaturesInRange;
+    })
     .sort((a, b) => b.features.overallRating - a.features.overallRating);
 
   const toggleProductSelection = (product) => {
@@ -88,8 +104,7 @@ const CategoriesContainer = ({ title }) => {
       <div className="content-wrapper">
         <div className="sidebar">
           <h3>Filters</h3>
-          {[
-            { key: "buildQuality", label: "Build Quality" },
+          {[{ key: "buildQuality", label: "Build Quality" },
             { key: "soundQuality", label: "Sound Quality" },
             { key: "design", label: "Design" },
             { key: "comfort", label: "Comfort" },
@@ -106,6 +121,24 @@ const CategoriesContainer = ({ title }) => {
               />
             </div>
           ))}
+          <h3>Price Range</h3>
+          <div className="price-range">
+            <Input
+              type="number"
+              name="minPrice"
+              placeholder="Min Price"
+              value={priceRange.minPrice}
+              onChange={handlePriceInputChange}
+            />
+            {"-"}
+            <Input
+              type="number"
+              name="maxPrice"
+              placeholder="Max Price"
+              value={priceRange.maxPrice}
+              onChange={handlePriceInputChange}
+            />
+          </div>
         </div>
 
         <div className="products-container">
