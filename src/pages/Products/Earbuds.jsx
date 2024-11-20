@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Button, Col, Modal, Row } from "antd";
+import { Button, Col, Modal, Row, Slider } from "antd";
 import Cart from "../../components/Cart";
 import RadarChart from "../../components/RadarChart";
 import "./style.css";
@@ -17,38 +17,52 @@ const CategoriesCompareModal = ({
   selectedProducts,
 }) => {
   return (
-    <>
-      <Modal
-        title="Compare Products"
-        open={isModalOpen}
-        onCancel={() => setIsModalOpen(false)}
-        cancelButtonProps={{ style: { display: "none" } }}
-        okButtonProps={{ style: { display: "none" } }}
-        width={"80vw"}
-      >
-        {selectedProducts.length > 1 && (
-          <Row>
-            <Col span={12}>
-              <RadarChart
-                products={products}
-                features={Object.keys(selectedProducts[0].specs)}
-              />
-            </Col>
-            <Col span={12}>ASDASIUDAIUDA</Col>
-          </Row>
-        )}
-      </Modal>
-    </>
+    <Modal
+      title="Compare Products"
+      open={isModalOpen}
+      onCancel={() => setIsModalOpen(false)}
+      cancelButtonProps={{ style: { display: "none" } }}
+      okButtonProps={{ style: { display: "none" } }}
+      width={"80vw"}
+    >
+      {selectedProducts.length > 1 && (
+        <Row>
+          <Col span={12}>
+            <RadarChart
+              products={products}
+              features={Object.keys(selectedProducts[0].specs)}
+            />
+          </Col>
+          <Col span={12}>Comparison Chart</Col>
+        </Row>
+      )}
+    </Modal>
   );
 };
 
 const CategoriesContainer = ({ title }) => {
-  const products = earbuds.sort(
-    (a, b) => b.features.overallRating - a.features.overallRating
-  );
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const [filterValues, setFilterValues] = useState({
+    buildQuality: [0, 10],
+    soundQuality: [0, 10],
+    design: [0, 10],
+    comfort: [0, 10],
+    batteryLife: [0, 10],
+  });
+
+  const handleFilterChange = (feature, values) => {
+    setFilterValues((prev) => ({ ...prev, [feature]: values }));
+  };
+
+  const filteredProducts = earbuds
+    .filter((product) =>
+      Object.entries(filterValues).every(
+        ([key, [min, max]]) =>
+          product.features[key] >= min && product.features[key] <= max
+      )
+    )
+    .sort((a, b) => b.features.overallRating - a.features.overallRating);
 
   const toggleProductSelection = (product) => {
     setSelectedProducts((prevSelected) => {
@@ -65,32 +79,58 @@ const CategoriesContainer = ({ title }) => {
       <CategoriesCompareModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        products={products}
+        products={filteredProducts}
         selectedProducts={selectedProducts}
       />
 
       <h1 style={{ color: "white" }}>{title}</h1>
 
-      <Row
-        gutter={16}
-        className="categories-card"
-        style={{ marginRight: "0px" }}
-      >
-        {products.map((product) => (
-          <Col key={product.id} xs={24} sm={12} md={6}>
-            <Cart
-              id={product.id}
-              title={product.name}
-              description={product.description}
-              imageSrc={product.img}
-              price={product.price}
-              toggleProductSelection={toggleProductSelection}
-              product={product}
-              overallRating={product.features.overallRating}
-            />
-          </Col>
-        ))}
-      </Row>
+      <div className="content-wrapper">
+        <div className="sidebar">
+          <h3>Filters</h3>
+          {[
+            { key: "buildQuality", label: "Build Quality" },
+            { key: "soundQuality", label: "Sound Quality" },
+            { key: "design", label: "Design" },
+            { key: "comfort", label: "Comfort" },
+            { key: "batteryLife", label: "Battery Life" },
+          ].map(({ key, label }) => (
+            <div key={key}>
+              <h4>{label}</h4>
+              <Slider
+                range
+                min={0}
+                max={10}
+                defaultValue={filterValues[key]}
+                onChange={(values) => handleFilterChange(key, values)}
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className="products-container">
+          <Row
+            gutter={16}
+            className="categories-card"
+            style={{ marginRight: "0px" }}
+          >
+            {filteredProducts.map((product) => (
+              <Col key={product.id} xs={24} sm={12} md={6}>
+                <Cart
+                  id={product.id}
+                  title={product.name}
+                  description={product.description}
+                  imageSrc={product.img}
+                  price={product.price}
+                  toggleProductSelection={toggleProductSelection}
+                  product={product}
+                  overallRating={product.features.overallRating}
+                />
+              </Col>
+            ))}
+          </Row>
+        </div>
+      </div>
 
       {selectedProducts.length > 0 && (
         <div className="compare-container">
