@@ -1,7 +1,11 @@
 import { Input, Slider } from "antd";
 
-const Filter = ({ filterValues, handleFilterChange, setPriceRange, priceRange, filters }) => {
-
+const Filter = ({
+  defaultFilterValues,
+  handleFilterChange,
+  setPriceRange,
+  priceRange,
+}) => {
   const handlePriceInputChange = (e) => {
     const { name, value } = e.target;
     setPriceRange((prev) => ({ ...prev, [name]: value }));
@@ -10,14 +14,14 @@ const Filter = ({ filterValues, handleFilterChange, setPriceRange, priceRange, f
   return (
     <div className="sidebar">
       <h3>Filters</h3>
-      {filters.map(({ key, label }) => (
+      {Object.entries(defaultFilterValues).map(([key, values]) => (
         <div key={key}>
-          <h4>{label}</h4>
+          <h4>{key}</h4>
           <Slider
             range
-            min={0}
-            max={10}
-            defaultValue={filterValues[key]}
+            min={values[0]}
+            max={values[1]}
+            defaultValue={values}
             onChange={(values) => handleFilterChange(key, values)}
           />
         </div>

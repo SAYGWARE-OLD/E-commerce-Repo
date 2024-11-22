@@ -1,19 +1,11 @@
 import { useState } from "react";
 import { FaShoppingBasket } from "react-icons/fa";
-import { Button, Card, notification, Tooltip, Switch } from "antd";
+import { Button, Card, notification, Switch } from "antd";
 import Meta from "antd/es/card/Meta";
 import "./Cart.css";
 import { useCart, useFavori } from "../utils/CartContext";
 import { useNavigate } from "react-router-dom";
-import {
-  BuildOutlined,
-  CustomerServiceOutlined,
-  FormatPainterOutlined,
-  HeartTwoTone,
-  PoweroffOutlined,
-  SmileOutlined,
-  SwapOutlined,
-} from "@ant-design/icons";
+import { HeartTwoTone, SwapOutlined } from "@ant-design/icons";
 
 function Cart({
   id,
@@ -154,65 +146,31 @@ function Cart({
               Compare
             </Button>
           </div>
-          <div style={{ marginTop: "10px", zIndex:"9999"  }}>
+          <div style={{ marginTop: "10px", zIndex: "9999" }}>
             <Switch
               checked={isFlipped}
               onChange={handleFlip}
-              checkedChildren="Details"
-              unCheckedChildren="Info"
+              checkedChildren="DETAILS"
+              unCheckedChildren="INFO"
             />
           </div>
         </div>
         <div className="card-back">
           <h1 className="features-title">Features</h1>
           <div className="features">
-            <div className="features-item">
-              <Tooltip title="Build Quality">
-                <i>
-                  <BuildOutlined />
-                </i>
-              </Tooltip>
-              <p>{product.features.buildQuality}</p>
-            </div>
-            <div className="features-item">
-              <Tooltip title="Sound Quality">
-                <i>
-                  <CustomerServiceOutlined />
-                </i>
-              </Tooltip>
-              <p>{product.features.soundQuality}</p>
-            </div>
-            <div className="features-item">
-              <Tooltip title="Design">
-                <i>
-                  <FormatPainterOutlined />
-                </i>
-              </Tooltip>
-              <p>{product.features.design}</p>
-            </div>
-            <div className="features-item">
-              <Tooltip title="Comfort">
-                <i>
-                  <SmileOutlined />
-                </i>
-              </Tooltip>
-              <p>{product.features.comfort}</p>
-            </div>
-            <div className="features-item">
-              <Tooltip title="Battery">
-                <i>
-                  <PoweroffOutlined />
-                </i>
-              </Tooltip>
-              <p>{product.features.batteryLife}</p>
-            </div>
+            {Object.entries(product.features).map(([key, value], i) => (
+              <div className="features-item" key={i}>
+                <span>{key}</span>
+                <p>{value}</p>
+              </div>
+            ))}
           </div>
-          <div style={{ marginTop: "50px", zIndex:"9999" }}>
+          <div style={{ marginTop: "50px", zIndex: "9999" }}>
             <Switch
               checked={isFlipped}
               onChange={handleFlip}
-              checkedChildren="Details"
-              unCheckedChildren="Info"
+              checkedChildren="DETAILS"
+              unCheckedChildren="INFO"
             />
           </div>
         </div>
