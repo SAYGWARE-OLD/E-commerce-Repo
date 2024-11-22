@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaShoppingBasket } from "react-icons/fa";
-import { Button, Card, notification, Tooltip } from "antd";
+import { Button, Card, notification, Tooltip, Switch } from "antd";
 import Meta from "antd/es/card/Meta";
 import "./Cart.css";
 import { useCart, useFavori } from "../utils/CartContext";
@@ -8,10 +8,8 @@ import { useNavigate } from "react-router-dom";
 import {
   BuildOutlined,
   CustomerServiceOutlined,
-  EyeOutlined,
   FormatPainterOutlined,
   HeartTwoTone,
-  InfoCircleOutlined,
   PoweroffOutlined,
   SmileOutlined,
   SwapOutlined,
@@ -28,7 +26,6 @@ function Cart({
   overallRating,
 }) {
   const navigate = useNavigate();
-  console.log("product", product);
   const { addToCart, removeFromCart, cartItems } = useCart();
   const { addToFavori, removeFromFavori, favoriItems } = useFavori();
   const [isInCart, setIsInCart] = useState(
@@ -84,8 +81,8 @@ function Cart({
     navigate(`/detail/${id}`);
   };
 
-  const handleFlip = () => {
-    setIsFlipped(!isFlipped);
+  const handleFlip = (checked) => {
+    setIsFlipped(checked);
   };
 
   return (
@@ -101,6 +98,7 @@ function Cart({
             width: "50%",
             margin: "0 auto",
           }}
+          onClick={handleNavigateCart}
         />
       }
       className={`card-container ${isFlipped ? "flipped" : ""}`}
@@ -145,10 +143,6 @@ function Cart({
               <FaShoppingBasket />
               Add to Cart
             </Button>
-            <Button className="review-button" onClick={handleNavigateCart}>
-              <EyeOutlined />
-              Review
-            </Button>
           </div>
           <div>
             <Button
@@ -160,15 +154,17 @@ function Cart({
               Compare
             </Button>
           </div>
-          <div>
-            <button className="flip-button" onClick={handleFlip}>
-              <InfoCircleOutlined />
-            </button>
+          <div style={{ marginTop: "10px", zIndex:"9999"  }}>
+            <Switch
+              checked={isFlipped}
+              onChange={handleFlip}
+              checkedChildren="Details"
+              unCheckedChildren="Info"
+            />
           </div>
         </div>
         <div className="card-back">
           <h1 className="features-title">Features</h1>
-
           <div className="features">
             <div className="features-item">
               <Tooltip title="Build Quality">
@@ -211,16 +207,14 @@ function Cart({
               <p>{product.features.batteryLife}</p>
             </div>
           </div>
-        </div>
-        <div>
-          <button className="flip-button" onClick={handleFlip}>
-            <InfoCircleOutlined />
-          </button>
-        </div>
-        <div>
-          <button className="flip-button" onClick={handleFlip}>
-            <InfoCircleOutlined />
-          </button>
+          <div style={{ marginTop: "50px", zIndex:"9999" }}>
+            <Switch
+              checked={isFlipped}
+              onChange={handleFlip}
+              checkedChildren="Details"
+              unCheckedChildren="Info"
+            />
+          </div>
         </div>
       </div>
     </Card>
