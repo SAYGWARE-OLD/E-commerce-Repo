@@ -11,12 +11,16 @@
   transform-style: preserve-3d;
   transform: rotateY(0);
   transition: transform 0.5s ease;
+  border: 5px solid transparent;
 }
 
 .card-container:hover {
-  box-shadow: 0 0 10px 15px rgba(182, 254, 254, 0.5),
-    0 0 50px 30px rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 5px 10px rgb(105, 177, 255, 0.5);
   cursor: pointer;
+}
+
+.card-container-active {
+  border-color: #69b1ff !important;
 }
 
 .card-content {

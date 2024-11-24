@@ -16,6 +16,7 @@ function Cart({
   toggleProductSelection,
   product,
   overallRating,
+  selected,
 }) {
   const navigate = useNavigate();
   const { addToCart, removeFromCart, cartItems } = useCart();
@@ -93,7 +94,9 @@ function Cart({
           onClick={handleNavigateCart}
         />
       }
-      className={`card-container ${isFlipped ? "flipped" : ""}`}
+      className={`card-container ${selected ? "card-container-active" : ""} ${
+        isFlipped ? "flipped" : ""
+      }`}
     >
       <div className="card-inner">
         <div className="card-front">

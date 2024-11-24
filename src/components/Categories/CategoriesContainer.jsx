@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import React, { useEffect, useState } from "react";
-import { Col, message, Row } from "antd";
+import { Button, Col, message, Row } from "antd";
 import Cart from "../Cart";
 import CategoriesCompareModal from "./CategoriesCompareModal";
 import Filter from "../../hooks/Filter";
@@ -61,7 +61,7 @@ const CategoriesContainer = ({ title, products }) => {
       return isPriceInRange && areFeaturesInRange;
     })
     .sort(
-      (a, b) => b.features["Overall Rating"] - a.features["Overall Rating"]
+      (a, b) => b.overallRating - a.overallRating
     );
 
   const toggleProductSelection = (productId) => {
@@ -85,6 +85,7 @@ const CategoriesContainer = ({ title, products }) => {
         setIsModalOpen={setIsModalOpen}
         products={filteredProducts}
         selectedProducts={selectedProducts}
+        filterValues={filterValues}
       />
       <h1 style={{ color: "white" }}>{title}</h1>
       <div className="content-wrapper">
@@ -110,7 +111,8 @@ const CategoriesContainer = ({ title, products }) => {
                   price={product.price}
                   toggleProductSelection={toggleProductSelection}
                   product={product}
-                  overallRating={product.features["Overall Rating"]}
+                  overallRating={product.overallRating}
+                  selected={selectedProducts.includes(product.id)}
                 />
               </Col>
             ))}
@@ -140,6 +142,12 @@ const CategoriesContainer = ({ title, products }) => {
               );
             })}
           </div>
+          <Button
+            disabled={selectedProducts.length < 2}
+            onClick={() => setIsModalOpen(true)}
+          >
+            Compare
+          </Button>
         </div>
       )}
     </div>

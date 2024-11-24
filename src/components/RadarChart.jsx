@@ -18,20 +18,19 @@ ChartJS.register(
   Legend
 );
 
-const RadarChart = ({ products, features }) => {
+const RadarChart = ({ products, selectedProducts, filterValues }) => {
   const data = {
-    labels: features,
-    datasets: products.map((product) => ({
-      label: product.name,
-      data: features.map((feature) => product.normalizedSpecs[feature] || 0),
-      backgroundColor: `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(
-        Math.random() * 255
-      )}, ${Math.floor(Math.random() * 255)}, 0.2)`,
-      borderColor: `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(
-        Math.random() * 255
-      )}, ${Math.floor(Math.random() * 255)}, 1)`,
-      borderWidth: 1,
-    })),
+    labels: Object.keys(filterValues),
+    datasets: products
+      .filter((p) => selectedProducts.includes(p.id))
+      .map((product, index) => ({
+        label: product.name,
+        data: Object.values(product.features),
+        backgroundColor:
+          index % 2 ? "rgba(255, 0, 0, 0.2)" : "rgba(0, 0, 255, 0.2)",
+        borderColor: index % 2 ? "rgb(255, 0, 0)" : "rgb(0, 0, 255)",
+        borderWidth: 1,
+      })),
   };
 
   const options = {
