@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-no-duplicate-props */
-import { useEffect, useState } from "react";
-import { Col, Row } from "antd";
+import React, { useEffect, useState } from "react";
+import { Col, message, Row } from "antd";
 import Cart from "../Cart";
-import { CloseCircleOutlined } from "@ant-design/icons";
 import CategoriesCompareModal from "./CategoriesCompareModal";
 import Filter from "../../hooks/Filter";
 import "./Categories.css";
+import { CloseCircleOutlined } from "@ant-design/icons";
 
 const CategoriesContainer = ({ title, products }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -65,11 +65,17 @@ const CategoriesContainer = ({ title, products }) => {
     );
 
   const toggleProductSelection = (productId) => {
-    setSelectedProducts(
-      selectedProducts.includes(productId)
-        ? selectedProducts.filter((id) => id !== productId)
-        : [...selectedProducts, productId]
-    );
+    setSelectedProducts((prevSelected) => {
+      if (prevSelected.includes(productId)) {
+        return prevSelected.filter((id) => id !== productId);
+      } else if (prevSelected.length < 2) {
+        return [...prevSelected, productId];
+      } else {
+        message.destroy();
+        message.warning("En fazla 2 ürün seçebilirsiniz!", 2);
+        return prevSelected;
+      }
+    });
   };
 
   return (
@@ -115,21 +121,22 @@ const CategoriesContainer = ({ title, products }) => {
       {selectedProducts.length > 0 && (
         <div className="compare-container">
           <div className="compare-items">
-            {selectedProducts.map((productId) => {
+            {selectedProducts.map((productId, index) => {
               const product = products.find((item) => item.id === productId);
-
               return (
-                <div className="product" key={product.id}>
-                  {/* <CloseCircleOutlined
-                    className="remove-icon"
-                    onClick={() => toggleProductSelection(product)}
-                  /> */}
-                  <img
-                    src={product.img}
-                    alt={product.name}
-                    className="product-img"
-                  />
-                </div>
+                <React.Fragment key={product.id}>
+                  <div className="product">
+                    <CloseCircleOutlined
+                      className="remove-icon"
+                      onClick={() => toggleProductSelection(product.id)}
+                    />
+                    <img src={product.img} alt={product.name} />
+                    <div className="product-name">{product.name}</div>
+                  </div>
+                  {index < selectedProducts.length - 1 && (
+                    <div className="vs-icon">VS</div>
+                  )}
+                </React.Fragment>
               );
             })}
           </div>
