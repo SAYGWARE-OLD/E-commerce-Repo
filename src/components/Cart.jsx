@@ -138,7 +138,7 @@ function Cart({
           </div>
           <div>
             <Button
-              onClick={() => toggleProductSelection(product)}
+              onClick={() => toggleProductSelection(product.id)}
               style={{ marginTop: "10px" }}
               className="compare-button"
             >

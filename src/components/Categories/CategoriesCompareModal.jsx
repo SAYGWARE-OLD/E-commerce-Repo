@@ -16,7 +16,7 @@ const CategoriesCompareModal = ({
         okButtonProps={{ style: { display: "none" } }}
         width={"80vw"}
       >
-        {selectedProducts.length > 1 && (
+        {/* {selectedProducts.length > 1 && (
           <Row>
             <Col span={12}>
               <RadarChart
@@ -26,7 +26,7 @@ const CategoriesCompareModal = ({
             </Col>
             <Col span={12}>Comparison Chart</Col>
           </Row>
-        )}
+        )} */}
       </Modal>
     );
   };

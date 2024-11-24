@@ -1,0 +1,28 @@
+.compare-container {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+}
+
+.compare-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 5px;
+  width: 300px;
+}
+
+.product {
+  width: 100%;
+  border-radius: 100%;
+  height: 100%;
+}
+
+.product img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import { useEffect, useState } from "react";
-import { Button, Col, Row } from "antd";
+import { Col, Row } from "antd";
 import Cart from "../Cart";
 import { CloseCircleOutlined } from "@ant-design/icons";
 import CategoriesCompareModal from "./CategoriesCompareModal";
 import Filter from "../../hooks/Filter";
+import "./Categories.css";
 
 const CategoriesContainer = ({ title, products }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -63,14 +64,12 @@ const CategoriesContainer = ({ title, products }) => {
       (a, b) => b.features["Overall Rating"] - a.features["Overall Rating"]
     );
 
-  const toggleProductSelection = (product) => {
-    setSelectedProducts((prevSelected) => {
-      if (prevSelected.find((p) => p.id === product.id)) {
-        return prevSelected.filter((p) => p.id !== product.id);
-      } else {
-        return [...prevSelected, product];
-      }
-    });
+  const toggleProductSelection = (productId) => {
+    setSelectedProducts(
+      selectedProducts.includes(productId)
+        ? selectedProducts.filter((id) => id !== productId)
+        : [...selectedProducts, productId]
+    );
   };
 
   return (
@@ -116,28 +115,23 @@ const CategoriesContainer = ({ title, products }) => {
       {selectedProducts.length > 0 && (
         <div className="compare-container">
           <div className="compare-items">
-            {selectedProducts.map((product) => (
-              <div className="product" key={product.id}>
-                <CloseCircleOutlined
-                  className="remove-icon"
-                  onClick={() => toggleProductSelection(product)}
-                />
-                <img
-                  src={product.img}
-                  alt={product.name}
-                  className="product-img"
-                />
-                <p>{product.name}</p>
-              </div>
-            ))}
-            {selectedProducts.length > 1 && (
-              <Button
-                style={{ marginBottom: "20px" }}
-                onClick={() => setIsModalOpen(true)}
-              >
-                Compare
-              </Button>
-            )}
+            {selectedProducts.map((productId) => {
+              const product = products.find((item) => item.id === productId);
+
+              return (
+                <div className="product" key={product.id}>
+                  {/* <CloseCircleOutlined
+                    className="remove-icon"
+                    onClick={() => toggleProductSelection(product)}
+                  /> */}
+                  <img
+                    src={product.img}
+                    alt={product.name}
+                    className="product-img"
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
