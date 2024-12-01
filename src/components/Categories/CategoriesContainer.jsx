@@ -7,7 +7,7 @@ import Filter from "../../hooks/Filter";
 import "./Categories.css";
 import { CloseCircleOutlined } from "@ant-design/icons";
 
-const CategoriesContainer = ({ title, products }) => {
+const CategoriesContainer = ({ title, products}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [filterValues, setFilterValues] = useState({});
@@ -34,6 +34,7 @@ const CategoriesContainer = ({ title, products }) => {
     const filterValues = calculateFilterValues();
     setFilterValues(filterValues);
     setDefaultFilterValues(filterValues);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleFilterChange = (feature, values) =>

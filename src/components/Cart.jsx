@@ -71,7 +71,7 @@ function Cart({
   };
 
   const handleNavigateCart = () => {
-    navigate(`/detail/${id}`);
+    navigate(`${id}`);
   };
 
   const handleFlip = (checked) => {

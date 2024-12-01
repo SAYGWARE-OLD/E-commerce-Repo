@@ -17,14 +17,14 @@ const Payment = lazy(() => import("../pages/PaymentPage/Payment.jsx"));
 const UpdatePassword = lazy(() =>
   import("../pages/UpdatePassword/UpdatePassword.jsx")
 );
-const DetailPage = lazy(() =>
-  import("../pages/HomePage/DetailPage/DetailPage.jsx")
+const ProductDetailContainer = lazy(() =>
+  import("../pages/ProductDetail/ProductDetailContainer.jsx")
 );
 const MyOrders = lazy(() => import("../pages/myOrdersPage/myOrders.jsx"));
 const HomeForm = lazy(() =>
   import("../pages/HomePage/pageComponents/HomeForm/HomeForm.jsx")
 );
-const Earbuds = lazy(() => import("../pages/Products/Earbuds.jsx"));
+const Categories = lazy(() => import("../pages/Products/Categories.jsx"));
 
 export const routes = [
   {
@@ -33,12 +33,6 @@ export const routes = [
     element: <Home />,
     title: "Home",
     children: [
-      {
-        id: ROUTES_ID.detail,
-        path: "detail/:id",
-        element: <DetailPage />,
-        title: "Detail Page",
-      },
       {
         id: ROUTES_ID.homeForm,
         index: true,
@@ -122,15 +116,21 @@ export const routes = [
   {
     id: ROUTES_ID.myOrders,
     path: "/myOrders",
-    element: <MyOrders />,
+    element: <MyOrders />,  
     title: "My orders",
     isPrivate: true,
   },
   {
-    id: `categories/earbuds`,
-    path: `/categories/earbuds`,
-    element: <Earbuds />,
-    title: "Earbuds",
+    id: ROUTES_ID.categories,
+    path: `/categories/:category`,
+    element: <Categories />,
+    title: "Categories",
+  },
+  {
+    id: ROUTES_ID.detail,
+    path: "/categories/:category/:id",
+    element: <ProductDetailContainer/>,
+    title: "Detail Page", 
   },
 ];
 
@@ -143,3 +143,4 @@ export const getRouteTitle = (pathname) => {
   const route = routes.find((route) => route.path === pathname);
   return route ? route.title : "Not Found";
 };
+  

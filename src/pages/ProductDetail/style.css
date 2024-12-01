@@ -1,0 +1,124 @@
+  .product-detail {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap; 
+    height: 90vh;
+  }
+
+  .product-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    justify-content: space-around ;
+  }
+
+  .product-card-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    position: relative;
+    border-right: 1px solid #c9c9c9;
+  }
+
+  .product-image {
+    width: 40%; 
+    padding: 20px;
+    max-width: 400px;
+    object-fit: contain;
+  }
+
+  .product-info {
+    width: 50%;
+    padding: 0 20px;
+  }
+
+  .product-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .product-price {
+    font-size: 20px;
+    color: #a01414;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .product-description {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .product-features {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .product-features th,
+  .product-features td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+
+  .product-features th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+
+  .product-features td {
+    background-color: #f9f9f9;
+  }
+
+  .overall-rating {
+    position: absolute;
+    top: 5px;
+    right: 20px; 
+    font-size: 2rem;
+    font-weight: bold; 
+    color: #fff;
+    background-color: #0c595c; 
+    border: none; 
+    border-radius: 50%; 
+    padding: 15px 20px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+    text-align: center; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+
+  .roll-back {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1rem;
+    background-color: #005a5e;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .roll-back:hover {
+    background-color: #0a4d4f;
+    
+  }
