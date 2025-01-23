@@ -2,21 +2,21 @@ export const categories = [
   {
     name: "Earbuds",
     slug: "earbuds",
-    img: "gpu.jpg",
+    img: "earbuds.webp",
   },
   {
     name: "Monitors",
     slug: "monitor",
-    img: "gpu.jpg",
+    img: "monitor.webp",
   },
   {
     name: "Keyboards",
     slug: "keyboard",
-    img: "gpu.jpg",
+    img: "keyboard.webp",
   },
   {
     name: "Mouses",
     slug: "mouse",
-    img: "gpu.jpg",
+    img: "mouse.webp",
   },
 ];

@@ -15,6 +15,8 @@ function CategoryCard({ name, slug, img }) {
           style={{
             backgroundImage: `url(${img})`,
             color: "#fff",
+            textAlign: "left",
+            minWidth: "300px",
           }}
         >
           <Text className="category-text">{name}</Text>
@@ -32,7 +34,7 @@ function HomeForm() {
     const interval = setInterval(() => {
       setCurrentText(texts[index]);
       setIndex((prevIndex) => (prevIndex + 1) % texts.length);
-    }, 2000); // Adjust time for each text display
+    }, 2000); 
     return () => clearInterval(interval);
   }, [index]);
 
@@ -45,7 +47,7 @@ function HomeForm() {
         </h1>
       </div>
       <div className="categories-wrapper">
-        <Row gutter={[24, 24]}>
+        <Row gutter={[16, 16]}>
           {categories.map((category) => (
             <Col span={12} key={category.slug}>
               <CategoryCard

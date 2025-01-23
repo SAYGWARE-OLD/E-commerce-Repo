@@ -4,8 +4,15 @@ import MainLayout from "../../layout/MainLayoutPage/MainLayout";
 import Navbar from "../../components/navbar";
 import CategoriesContainer from "../../components/Categories/CategoriesContainer";
 import { earbuds } from "../../mock/earbuds";
+import { monitor } from "../../mock/monitor";
+import { keyboard } from "../../mock/keyboard";
+import { mouse } from "../../mock/mouse";
+
 const categories = {
-  earbuds
+  earbuds,
+  monitor,
+  keyboard,
+  mouse
 }
 function Categories() {
   const {category} = useParams();
